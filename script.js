@@ -24,12 +24,26 @@ function updatePlayIcon() {
 
 // update progress & timestamp
 function updateProgress() {
-  return true;
+  progress.value = (video.currentTime / video.duration) * 100;
+
+  //   Get minutes
+  let mins = Math.floor(video.currentTime / 60);
+  if (mins < 10) {
+    mins = "0" + String(mins);
+  }
+
+  //   Get seconds
+  let sex = Math.floor(video.currentTime % 60);
+  if (sex < 10) {
+    sex = "0" + String(sex);
+  }
+
+  timestamp.innerHTML = `${mins}:${sex}`;
 }
 
 // Set video time to progress
 function setVideoProgress() {
-  return true;
+  video.currentTime = (+progress.value * video.duration) / 100;
 }
 
 // Stop video
